@@ -1,284 +1,295 @@
 .ideate-container {
-    display: flex;
-    min-height: 100vh;
-    background-color: #84A4A1;
-    color: #235055;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
+  display: flex;
+  min-height: 100vh;
+  background-color: #84A4A1;
+  color: #235055;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.ideate-content {
+  flex: 1;
+  padding: 20px;
+  margin-left: 250px; 
+}
+
+.ideate-title {
+  color: #235055;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+.toolbar {
+  background-color: #ECECEC;
+  padding: 10px;
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #235055;
+}
+
+.toolbar-section {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.toolbar-section:not(:last-child) {
+  border-right: 1px solid #235055;
+  padding-right: 15px;
+}
+
+.toolbar-select {
+  background-color: #ECECEC;
+  border: 1px solid #235055;
+  color: #235055;
+  padding: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.toolbar-button {
+  background-color: #ECECEC;
+  border: 1px solid #235055;
+  color: #235055;
+  min-width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0 10px;
+}
+
+.toolbar-button.action-button {
+  min-width: 80px;
+  padding: 0 15px;
+}
+
+.toolbar-button.export-button {
+  background-color: #235055;
+  color: #ECECEC;
+}
+
+.toolbar-button:hover {
+  background-color: #d0d0d0;
+}
+
+.toolbar-button.export-button:hover {
+  background-color: #1a3c40;
+  color: #ECECEC;
+}
+
+.toolbar-button.active {
+  background-color: #235055;
+  color: #ECECEC;
+}
+
+.toolbar-button span {
+  display: block;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.editor-container {
+  height: calc(100vh - 180px);
+  background-color: #ECECEC;
+  border-radius: 0 0 8px 8px;
+  padding: 10px;
+}
+
+.editor {
+  width: 100%;
+  height: 100%;
+  border: none;
+  resize: none;
+  background-color: #ECECEC;
+  color: #235055;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 4px;
+  line-height: 1.5;
+}
+
+.editor:focus {
+  outline: none;
+}
+
+/* Table styles that will be inserted into content */
+.editor table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 15px 0;
+}
+
+.editor th {
+  background-color: #235055;
+  color: #ECECEC;
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #235055;
+}
+
+.editor td {
+  padding: 8px;
+  border: 1px solid #235055;
+}
+
+/* Modal styles for table creation */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: #ECECEC;
+  border-radius: 8px;
+  padding: 20px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal h3 {
+  margin-top: 0;
+  color: #235055;
+  border-bottom: 1px solid #235055;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.modal-content {
+  margin-bottom: 20px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  width: 80px;
+  color: #235055;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #235055;
+  border-radius: 4px;
+  background-color: #ECECEC;
+  color: #235055;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal-actions button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 1px solid #235055;
+  background-color: #ECECEC;
+  color: #235055;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-actions button:last-child {
+  background-color: #235055;
+  color: #ECECEC;
+}
+
+.modal-actions button:hover {
+  opacity: 0.9;
+}
+
+/* Table preview */
+.table-preview {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #235055;
+  max-width: 300px;
+  margin: 10px 0;
+}
+
+.preview-row {
+  display: flex;
+}
+
+.preview-cell {
+  width: 25px;
+  height: 20px;
+  border: 1px solid #235055;
+  flex: 1;
+}
+
+.header-cell {
+  background-color: #235055;
+}
+
+/* Drawing area */
+.drawing-container {
+  height: calc(100vh - 180px);
+  background-color: #ECECEC;
+  border-radius: 0 0 8px 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.drawing-canvas {
+  flex: 1;
+  background-color: white;
+  border: 1px solid #235055;
+  cursor: crosshair;
+}
+
+.drawing-controls {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  background-color: #ECECEC;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
   .ideate-content {
-    flex: 1;
-    padding: 20px;
-    margin-left: 250px; /* Space from sidebar as requested */
-  }
-  
-  .ideate-title {
-    color: #235055;
-    margin-bottom: 20px;
-    font-size: 28px;
+    margin-left: 0;
+    padding-top: 60px; /* Space for a mobile sidebar/header */
   }
   
   .toolbar {
-    background-color: #ECECEC;
-    padding: 10px;
-    border-radius: 8px 8px 0 0;
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    border-bottom: 1px solid #235055;
-  }
-  
-  .toolbar-section {
-    display: flex;
-    gap: 5px;
-    align-items: center;
-  }
-  
-  .toolbar-section:not(:last-child) {
-    border-right: 1px solid #235055;
-    padding-right: 15px;
-  }
-  
-  .toolbar-select {
-    background-color: #ECECEC;
-    border: 1px solid #235055;
-    color: #235055;
-    padding: 5px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .toolbar-button {
-    background-color: #ECECEC;
-    border: 1px solid #235055;
-    color: #235055;
-    min-width: 32px;
-    height: 32px;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    padding: 0 10px;
-  }
-  
-  .toolbar-button.action-button {
-    min-width: 80px;
-    padding: 0 15px;
-  }
-  
-  .toolbar-button:hover {
-    background-color: #d0d0d0;
-  }
-  
-  .toolbar-button.active {
-    background-color: #235055;
-    color: #ECECEC;
-  }
-  
-  .toolbar-button span {
-    display: block;
-    text-align: center;
-    white-space: nowrap;
-  }
-  
-  .editor-container {
-    height: calc(100vh - 180px);
-    background-color: #ECECEC;
-    border-radius: 0 0 8px 8px;
-    padding: 10px;
-  }
-  
-  .editor {
-    width: 100%;
-    height: 100%;
-    border: none;
-    resize: none;
-    background-color: #ECECEC;
-    color: #235055;
-    font-size: 16px;
-    padding: 10px;
-    border-radius: 4px;
-    line-height: 1.5;
-  }
-  
-  .editor:focus {
-    outline: none;
-  }
-  
-  /* Table styles that will be inserted into content */
-  .editor table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 15px 0;
-  }
-  
-  .editor th {
-    background-color: #235055;
-    color: #ECECEC;
-    padding: 8px;
-    text-align: left;
-    border: 1px solid #235055;
-  }
-  
-  .editor td {
-    padding: 8px;
-    border: 1px solid #235055;
-  }
-  
-  /* Modal styles for table creation */
-  .modal-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-  }
-  
-  .modal {
-    background-color: #ECECEC;
-    border-radius: 8px;
-    padding: 20px;
-    width: 400px;
-    max-width: 90%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .modal h3 {
-    margin-top: 0;
-    color: #235055;
-    border-bottom: 1px solid #235055;
-    padding-bottom: 10px;
-    margin-bottom: 15px;
-  }
-  
-  .modal-content {
-    margin-bottom: 20px;
-  }
-  
-  .input-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-  }
-  
-  .input-group label {
-    width: 80px;
-    color: #235055;
-  }
-  
-  .input-group input {
-    flex: 1;
-    padding: 8px;
-    border: 1px solid #235055;
-    border-radius: 4px;
-    background-color: #ECECEC;
-    color: #235055;
-  }
-  
-  .modal-actions {
-    display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
     gap: 10px;
   }
   
-  .modal-actions button {
-    padding: 8px 16px;
-    border-radius: 4px;
-    border: 1px solid #235055;
-    background-color: #ECECEC;
-    color: #235055;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  
-  .modal-actions button:last-child {
-    background-color: #235055;
-    color: #ECECEC;
-  }
-  
-  .modal-actions button:hover {
-    opacity: 0.9;
-  }
-  
-  /* Table preview */
-  .table-preview {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #235055;
-    max-width: 300px;
-    margin: 10px 0;
-  }
-  
-  .preview-row {
-    display: flex;
-  }
-  
-  .preview-cell {
-    width: 25px;
-    height: 20px;
-    border: 1px solid #235055;
-    flex: 1;
-  }
-  
-  .header-cell {
-    background-color: #235055;
-  }
-  
-  /* Drawing area */
-  .drawing-container {
-    height: calc(100vh - 180px);
-    background-color: #ECECEC;
-    border-radius: 0 0 8px 8px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .drawing-canvas {
-    flex: 1;
-    background-color: white;
-    border: 1px solid #235055;
-    cursor: crosshair;
-  }
-  
-  .drawing-controls {
-    padding: 10px;
-    display: flex;
+  .toolbar-section {
+    border-right: none;
+    border-bottom: 1px solid #235055;
+    padding-bottom: 10px;
+    width: 100%;
     justify-content: center;
-    background-color: #ECECEC;
   }
   
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .ideate-content {
-      margin-left: 0;
-      padding-top: 60px; /* Space for a mobile sidebar/header */
-    }
-    
-    .toolbar {
-      flex-direction: column;
-      gap: 10px;
-    }
-    
-    .toolbar-section {
-      border-right: none;
-      border-bottom: 1px solid #235055;
-      padding-bottom: 10px;
-      width: 100%;
-      justify-content: center;
-    }
-    
-    .toolbar-section:last-child {
-      border-bottom: none;
-    }
-    
-    .toolbar-button.action-button {
-      flex: 1;
-    }
+  .toolbar-section:last-child {
+    border-bottom: none;
   }
+  
+  .toolbar-button.action-button {
+    flex: 1;
+  }
+}

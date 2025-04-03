@@ -34,17 +34,14 @@ export default function Wallet() {
     const date = new Date(dateString);
     return `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
   };
-  const getProgressColor = (percentage) => {
-    // Green when under 50%, gradually changes to yellow then red as it approaches 100%
-    if (percentage < 50) {
-      return "#3CB371"; // Green
-    } else if (percentage < 75) {
-      return "#FFA500"; // Orange
+  const getProgressColor = (spent, limit) => {
+    if (spent > limit) {
+      return "#FF6B6B"; // Red when over the limit
     } else {
-      return "#FF6B6B"; // Red
+      return "#3CB371"; // Green otherwise
     }
   };
-
+  
   const handleExpenseChange = (index, field, value) => {
     const updatedExpenses = [...expenses];
     updatedExpenses[index][field] = value;
@@ -273,7 +270,7 @@ export default function Wallet() {
                   fill="none"
                   strokeDasharray="502.4"
                   strokeDashoffset={502.4 - (calculateProgress() / 100) * 502.4}
-                  stroke={getProgressColor(calculateProgress())}
+                  stroke={getProgressColor(calculateTotalExpenses(), limit)} // Updated function call
                   strokeLinecap="round"
                 />
                 {/* Budget Limit Marker */}

@@ -514,3 +514,24 @@ h2 {
 .add-expense-row td {
     padding: 15px;
 }
+/* Add this to your wallet.css file */
+
+/* Limit marker styling */
+.limit-marker {
+    opacity: 0.8;
+  }
+  
+  .limit-label {
+    position: absolute;
+    top: -20px; /* Moved above the circle */
+    font-size: 12px;
+    color: #235055;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 2px 8px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Progress bar transition */
+  

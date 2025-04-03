@@ -14,9 +14,9 @@ export default function Ideate() {
   const [showTableModal, setShowTableModal] = useState(false);
   const [tableRows, setTableRows] = useState(3);
   const [tableCols, setTableCols] = useState(3);
-  const [isDrawing, setIsDrawing] = useState(false);
-  const canvasRef = useRef(null);
   const [isDrawingMode, setIsDrawingMode] = useState(false);
+  const canvasRef = useRef(null);
+  const editorRef = useRef(null);
   const [drawing, setDrawing] = useState(false);
   const [lastPos, setLastPos] = useState({ x: 0, y: 0 });
 
@@ -86,11 +86,143 @@ export default function Ideate() {
     setShowTableModal(false);
   };
 
-  const handleFileUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      // In a real app, you would process the PDF here
-      alert(`File "${file.name}" selected. PDF import functionality would be implemented here.`);
+  const exportToPDF = () => {
+    // In a real implementation, you would use a library like jsPDF or html2pdf
+    // For now, we'll create a printable version that can be saved as PDF through the browser
+    
+    let printContent = '';
+    let title = 'Ideate Notes';
+    
+    if (isDrawingMode && canvasRef.current) {
+      // For drawing mode, export the canvas as an image
+      title = 'Ideate Drawing';
+      const dataUrl = canvasRef.current.toDataURL('image/png');
+      
+      // Create a new window with the image
+      const printWindow = window.open('', '_blank');
+      printWindow.document.write(`
+        <html>
+          <head>
+            <title>${title}</title>
+            <style>
+              body {
+                font-family: ${fontFamily};
+                margin: 20px;
+                color: #235055;
+              }
+              .export-header {
+                margin-bottom: 20px;
+                border-bottom: 1px solid #235055;
+                padding-bottom: 10px;
+              }
+              img {
+                max-width: 100%;
+                border: 1px solid #235055;
+              }
+              @media print {
+                body {
+                  -webkit-print-color-adjust: exact;
+                  print-color-adjust: exact;
+                }
+                .print-button {
+                  display: none;
+                }
+              }
+            </style>
+          </head>
+          <body>
+            <div class="export-header">
+              <h1>${title}</h1>
+              <p>Exported on ${new Date().toLocaleString()}</p>
+            </div>
+            <img src="${dataUrl}" alt="Drawing" />
+            <div class="print-button" style="margin-top: 20px;">
+              <button onclick="window.print(); setTimeout(() => window.close(), 500);">
+                Save as PDF
+              </button>
+            </div>
+            <script>
+              setTimeout(() => window.print(), 500);
+            </script>
+          </body>
+        </html>
+      `);
+      printWindow.document.close();
+    } else {
+      // For text content
+      // Format the content with proper styling
+      const styledContent = content.replace(/\n/g, '<br>');
+      
+      // Create a new window with the formatted content
+      const printWindow = window.open('', '_blank');
+      printWindow.document.write(`
+        <html>
+          <head>
+            <title>${title}</title>
+            <style>
+              body {
+                font-family: ${fontFamily};
+                font-size: ${fontSize};
+                margin: 20px;
+                color: #235055;
+              }
+              .content {
+                text-align: ${textAlign};
+                font-weight: ${isBold ? 'bold' : 'normal'};
+                font-style: ${isItalic ? 'italic' : 'normal'};
+                text-decoration: ${isUnderline ? 'underline' : 'none'};
+                line-height: 1.5;
+              }
+              .export-header {
+                margin-bottom: 20px;
+                border-bottom: 1px solid #235055;
+                padding-bottom: 10px;
+              }
+              table {
+                border-collapse: collapse;
+                width: 100%;
+                margin: 15px 0;
+              }
+              th {
+                background-color: #235055;
+                color: white;
+                padding: 8px;
+                text-align: left;
+                border: 1px solid #235055;
+              }
+              td {
+                padding: 8px;
+                border: 1px solid #235055;
+              }
+              @media print {
+                body {
+                  -webkit-print-color-adjust: exact;
+                  print-color-adjust: exact;
+                }
+                .print-button {
+                  display: none;
+                }
+              }
+            </style>
+          </head>
+          <body>
+            <div class="export-header">
+              <h1>${title}</h1>
+              <p>Exported on ${new Date().toLocaleString()}</p>
+            </div>
+            <div class="content">${styledContent}</div>
+            <div class="print-button" style="margin-top: 20px;">
+              <button onclick="window.print(); setTimeout(() => window.close(), 500);">
+                Save as PDF
+              </button>
+            </div>
+            <script>
+              setTimeout(() => window.print(), 500);
+            </script>
+          </body>
+        </html>
+      `);
+      printWindow.document.close();
     }
   };
 
@@ -240,15 +372,12 @@ export default function Ideate() {
           </div>
           
           <div className="toolbar-section">
-            <label className="toolbar-button action-button">
-              <span>Import PDF</span>
-              <input 
-                type="file" 
-                accept=".pdf" 
-                style={{ display: 'none' }} 
-                onChange={handleFileUpload}
-              />
-            </label>
+            <button 
+              className="toolbar-button action-button export-button"
+              onClick={exportToPDF}
+            >
+              Export PDF
+            </button>
             <button 
               className={`toolbar-button action-button ${isDrawingMode ? 'active' : ''}`}
               onClick={toggleDrawingMode}
@@ -272,11 +401,15 @@ export default function Ideate() {
               <button className="toolbar-button" onClick={toggleDrawingMode}>
                 Back to Editor
               </button>
+              <button className="toolbar-button export-button" onClick={exportToPDF}>
+                Export Drawing
+              </button>
             </div>
           </div>
         ) : (
           <div className="editor-container">
             <textarea
+              ref={editorRef}
               className="editor"
               value={content}
               onChange={handleContentChange}

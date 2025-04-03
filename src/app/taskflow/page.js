@@ -4,7 +4,6 @@ import { Calendar, ChevronLeft, ChevronRight } from "lucide-react";
 import Sidebar from "../../components/Sidebar";
 import "./taskflow.css";
 
-// Custom Calendar Component
 const CustomCalendar = ({ index, onSelectDate }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
@@ -42,12 +41,10 @@ const CustomCalendar = ({ index, onSelectDate }) => {
     
     const days = [];
     
-    // Empty cells for days before the first day of the month
     for (let i = 0; i < firstDay; i++) {
       days.push(<div key={`empty-${i}`} className="calendar-day empty"></div>);
     }
     
-    // Days of the month
     for (let day = 1; day <= daysInMonth; day++) {
       days.push(
         <div 
@@ -135,7 +132,6 @@ export default function Taskflow() {
   const handleCalendarClick = (index, e) => {
     e.stopPropagation();
     setShowCalendar(showCalendar === index ? null : index);
-    // Close other dropdowns when opening calendar
     setActiveDropdown(null);
   };
 
@@ -156,7 +152,6 @@ export default function Taskflow() {
     return `${day}/${month}/${year}`;
   };
 
-  // Close dropdowns when clicking outside
   const handleClickOutside = () => {
     setActiveDropdown(null);
     setShowCalendar(null);

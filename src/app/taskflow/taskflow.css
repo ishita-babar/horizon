@@ -8,7 +8,7 @@
 .content {
   flex-grow: 1;
   padding: 20px;
-  margin-left: 250px; /* Ensures space from sidebar */
+  margin-left: 250px; 
 }
 
 .taskflow-title {
@@ -105,7 +105,7 @@
   flex-direction: column;
   gap: 5px;
   padding: 5px;
-  width: 120px; /* Fix width to match button */
+  width: 120px; 
 }
 
 .status-option {
@@ -130,7 +130,6 @@
   background-color: #733534;
 }
 
-/* Calendar Input - FIX */
 .date-picker-container {
   position: relative;
   display: flex;
@@ -222,7 +221,6 @@
   text-align: center;
 }
 
-/* Priority specific colors */
 .priority-option.low {
   background-color: #27593E;
 }
@@ -235,7 +233,6 @@
   background-color: #733534;
 }
 
-/* Status specific colors */
 .status-option.in-progress {
   background-color: #284B61;
 }
@@ -248,7 +245,6 @@
   background-color: #733534;
 }
 
-/* Improved Progress Section */
 .progress-section {
   display: flex;
   flex-wrap: wrap;
@@ -278,7 +274,6 @@
   box-shadow: 0 8px 16px rgba(36, 85, 90, 0.2);
 }
 
-/* Budget Card Details - FIX */
 .card-details {
   text-align: center;
   margin-bottom: 10px;
@@ -335,7 +330,6 @@
   text-overflow: ellipsis;
 }
 
-/* Enhanced Modal */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -449,7 +443,6 @@
   transform: scale(1.1);
 }
 
-/* Hide Date Picker Input */
 .hidden-date-picker {
   position: absolute;
   opacity: 0;
@@ -481,7 +474,6 @@
   color: #235055;
 }
 
-/* Custom Calendar Styles */
 .custom-calendar {
   position: absolute;
   top: 100%;
@@ -493,7 +485,6 @@
   width: 280px;
   margin-top: 10px;
   padding: 15px;
-  /* Ensure calendar doesn't cause scrolling */
   transform: translateY(0);
 }
 

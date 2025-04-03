@@ -24,11 +24,9 @@ export default function Wallet() {
     Object.fromEntries(Object.keys(categories).map((key) => [key, 0]))
   );
   
-  // References for date inputs and calendar positioning
   const dateInputRefs = useRef([]);
   const calendarRefs = useRef([]);
 
-  // Format date as DD/MM/YYYY
   const formatDate = (dateString) => {
     if (!dateString) return "";
     const date = new Date(dateString);
@@ -36,9 +34,9 @@ export default function Wallet() {
   };
   const getProgressColor = (spent, limit) => {
     if (spent > limit) {
-      return "#FF6B6B"; // Red when over the limit
+      return "#FF6B6B"; 
     } else {
-      return "#3CB371"; // Green otherwise
+      return "#3CB371"; 
     }
   };
   
@@ -66,9 +64,7 @@ export default function Wallet() {
     
     setCategoryTotals(newTotals);
     
-    // Calculate remaining budget based on total expenses
     const remainingBudget = budget - totalExpense;
-    // Don't update the budget here - we'll just calculate the display value in the component
   };
 
   const handleAddExpense = () => {
@@ -83,14 +79,12 @@ export default function Wallet() {
     setShowModal(false);
   };
 
-  // Calculate total expenses
   const calculateTotalExpenses = () => {
     return expenses.reduce((total, exp) => {
       return total + (parseFloat(exp.amount) || 0);
     }, 0);
   };
 
-  // Calculate progress percentage for circle
   const calculateProgress = () => {
     if (limit <= 0) return 0;
     const spent = calculateTotalExpenses();
@@ -98,7 +92,6 @@ export default function Wallet() {
   };
   
 
-  // Handle click on calendar icon
   const handleCalendarClick = (index, e) => {
     e.stopPropagation();
     if (showCalendar === index) {
@@ -108,24 +101,21 @@ export default function Wallet() {
     }
   };
 
-  // Custom calendar date selection
   const selectDate = (index, newDate) => {
     handleExpenseChange(index, "date", newDate);
     setShowCalendar(null);
   };
 
-  // Generate calendar days
   const generateCalendarDays = (year, month) => {
     const firstDay = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const days = [];
     
-    // Add empty cells for days before the 1st of the month
     for (let i = 0; i < firstDay; i++) {
       days.push(null);
     }
     
-    // Add days of the month
+
     for (let i = 1; i <= daysInMonth; i++) {
       days.push(i);
     }
@@ -133,7 +123,6 @@ export default function Wallet() {
     return days;
   };
 
-  // Custom calendar component
   const CustomCalendar = ({ index, onSelectDate }) => {
     const today = new Date();
     const [currentMonth, setCurrentMonth] = useState(today.getMonth());
@@ -201,14 +190,10 @@ export default function Wallet() {
       </div>
     );
   };
-
-  // Calculate available budget (based on input budget, not affected by expenses)
   const getAvailableBudget = () => {
     const totalSpent = calculateTotalExpenses();
     return budget - totalSpent;
   };
-
-  // Close calendar when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (showCalendar !== null && calendarRefs.current[showCalendar] && 
@@ -224,7 +209,6 @@ export default function Wallet() {
     };
   }, [showCalendar]);
 
-  // Ensure refs have enough slots for all expenses
   useEffect(() => {
     dateInputRefs.current = dateInputRefs.current.slice(0, expenses.length);
     calendarRefs.current = calendarRefs.current.slice(0, expenses.length);
@@ -235,7 +219,6 @@ export default function Wallet() {
     }
   }, [expenses.length]);
 
-  // Is the available budget below the limit?
   const isBelowLimit = () => {
     const availableBudget = getAvailableBudget();
     return availableBudget < 0 || calculateTotalExpenses() > limit;
@@ -247,8 +230,6 @@ export default function Wallet() {
       <div className="wallet-content">
         <h1 className="wallet-title">Wallet</h1>
         <hr className="section-line" />
-
-        {/* Budget Section */}
         <div className="budget-card" onClick={() => setShowModal(true)}>
           <div className="progress-circle-container">
             <div className="progress-circle">
@@ -270,10 +251,9 @@ export default function Wallet() {
                   fill="none"
                   strokeDasharray="502.4"
                   strokeDashoffset={502.4 - (calculateProgress() / 100) * 502.4}
-                  stroke={getProgressColor(calculateTotalExpenses(), limit)} // Updated function call
+                  stroke={getProgressColor(calculateTotalExpenses(), limit)} 
                   strokeLinecap="round"
                 />
-                {/* Budget Limit Marker */}
                 {limit > 0 && (
                   <line 
                     x1="90" 
@@ -334,7 +314,6 @@ export default function Wallet() {
         <h2>Categories</h2>
         <hr className="section-line" />
 
-        {/* Categories */}
         <div className="categories">
           {Object.entries(categoryTotals).map(([category, amount]) => (
             <div key={category} className="category-card" style={{ backgroundColor: categories[category] }}>
@@ -347,8 +326,6 @@ export default function Wallet() {
         <hr className="section-line" />
         <h2>Expenses</h2>
         <hr className="section-line" />
-
-        {/* Expenses Table */}
         <div className="table-container">
           <table className="expense-table">
             <thead>
@@ -370,8 +347,6 @@ export default function Wallet() {
                         onClick={(e) => handleCalendarClick(index, e)}
                       />
                       <span className="formatted-date">{formatDate(expense.date)}</span>
-                      
-                      {/* Custom Calendar Dropdown */}
                       {showCalendar === index && (
                         <CustomCalendar 
                           index={index} 

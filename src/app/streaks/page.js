@@ -9,7 +9,6 @@ export default function Streaks() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [calendarDays, setCalendarDays] = useState([]);
 
-  // Generate calendar days for current month
   useEffect(() => {
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
@@ -25,7 +24,6 @@ export default function Streaks() {
     setCalendarDays(daysArray);
   }, [currentDate]);
 
-  // Add new habit
   const handleAddHabit = (e) => {
     e.preventDefault();
     if (newHabit.trim() !== "") {
@@ -41,7 +39,6 @@ export default function Streaks() {
     }
   };
 
-  // Toggle habit completion for a specific day
   const toggleHabitCompletion = (habitId, date) => {
     setHabits(habits.map(habit => {
       if (habit.id === habitId) {
@@ -54,11 +51,9 @@ export default function Streaks() {
           completedDays.push(dateStr);
         }
         
-        // Calculate streak
         const sortedDays = [...completedDays].sort();
         let currentStreak = 0;
-        
-        // Simple streak calculation (can be improved for more accuracy)
+
         if (sortedDays.length > 0) {
           const today = new Date().toISOString().split('T')[0];
           const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
@@ -86,7 +81,6 @@ export default function Streaks() {
     }));
   };
 
-  // Calculate progress percentage
   const calculateProgress = (habit) => {
     if (calendarDays.length === 0) return 0;
     
@@ -97,17 +91,14 @@ export default function Streaks() {
     return Math.round((completedInCurrentMonth / calendarDays.length) * 100);
   };
 
-  // Navigate to previous month
   const previousMonth = () => {
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
   };
 
-  // Navigate to next month
   const nextMonth = () => {
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
   };
 
-  // Format date for display
   const formatDate = (date) => {
     return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
   };
@@ -150,12 +141,9 @@ export default function Streaks() {
               </div>
               
               <div className="calendar-grid">
-                {/* Fill in empty cells for days before the 1st of the month */}
                 {Array.from({ length: calendarDays[0]?.getDay() || 0 }).map((_, index) => (
                   <div key={`empty-${index}`} className="calendar-day empty"></div>
                 ))}
-                
-                {/* Calendar days */}
                 {calendarDays.map((day) => (
                   <div key={day.toISOString()} className="calendar-day">
                     <div className="day-number">{day.getDate()}</div>

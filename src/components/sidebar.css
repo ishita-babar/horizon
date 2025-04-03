@@ -136,14 +136,12 @@
   transition: transform 0.3s ease;
 }
 
-/* Active state for current page */
 .nav-item.active .nav-link {
   background-color: rgba(36, 85, 90, 0.1);
   color: #24555A;
   font-weight: 800;
 }
 
-/* For smaller screens */
 @media screen and (max-width: 768px) {
   .sidebar {
     width: 80px;

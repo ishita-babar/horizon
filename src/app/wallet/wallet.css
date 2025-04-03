@@ -31,7 +31,6 @@ h2 {
     margin: 15px 0;
 }
 
-/* Budget Card Styles */
 .budget-card {
     width: 250px;
     height: 250px;
@@ -72,7 +71,6 @@ h2 {
 
 .progress-bar {
     transition: stroke-dashoffset 0.5s ease, stroke 0.5s ease;
-    /* Ensure color changes smoothly */
 }
 
 .progress-info {
@@ -114,7 +112,6 @@ h2 {
     margin-top: 10px;
 }
 
-/* Modal Styles */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -160,14 +157,14 @@ h2 {
     border-radius: 8px;
     font-size: 16px;
     color: #235055;
-    background-color: #f5f5f5; /* Light background instead of black */
+    background-color: #f5f5f5; 
     outline: none;
     transition: border-color 0.3s;
 }
 
 .input-group input:focus {
     border-color: #235055;
-    background-color: white; /* White background when focused */
+    background-color: white; 
 }
 
 .modal-actions {
@@ -205,7 +202,6 @@ h2 {
     background-color: #d0d0d0;
 }
 
-/* Categories Styles */
 .categories {
     display: flex;
     gap: 15px;
@@ -238,20 +234,19 @@ h2 {
     font-weight: bold;
 }
 
-/* Expense Table Styles */
 .table-container {
     margin-top: 15px;
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     width: 100%;
-    overflow: visible; /* Prevent horizontal scrolling */
+    overflow: visible; 
 }
 
 .expense-table {
     width: 100%;
     border-collapse: collapse;
-    table-layout: fixed; /* Fixed table layout */
+    table-layout: fixed;
 }
 
 .expense-table th {
@@ -279,7 +274,6 @@ h2 {
     border-bottom: none;
 }
 
-/* Column Widths */
 .date-column {
     width: 25%;
 }
@@ -296,7 +290,6 @@ h2 {
     width: 30%;
 }
 
-/* Date Cell Styles */
 .date-cell {
     position: relative;
 }
@@ -321,7 +314,6 @@ h2 {
     color: #235055;
 }
 
-/* Custom Calendar Styles */
 .custom-calendar {
     position: absolute;
     top: 100%;
@@ -333,7 +325,6 @@ h2 {
     width: 280px;
     margin-top: 10px;
     padding: 15px;
-    /* Ensure calendar doesn't cause scrolling */
     transform: translateY(0);
 }
 
@@ -401,7 +392,6 @@ h2 {
     cursor: default;
 }
 
-/* Editable Cell Styles */
 .editable-cell {
     position: relative;
 }
@@ -429,7 +419,6 @@ h2 {
     color: #aaa;
 }
 
-/* Amount Cell Styles */
 .amount-cell {
     position: relative;
     display: flex;
@@ -442,7 +431,6 @@ h2 {
     font-weight: bold;
 }
 
-/* Category Selector Styles */
 .category-cell {
     position: relative;
 }
@@ -471,7 +459,7 @@ h2 {
     position: absolute;
     top: 100%;
     left: 0;
-    z-index: 1000; /* Higher z-index to ensure it shows on top */
+    z-index: 1000; 
     background: white;
     border-radius: 12px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
@@ -498,7 +486,6 @@ h2 {
     transform: translateX(5px);
 }
 
-/* Add Expense Row */
 .add-expense-row {
     cursor: pointer;
     text-align: center;
@@ -514,16 +501,14 @@ h2 {
 .add-expense-row td {
     padding: 15px;
 }
-/* Add this to your wallet.css file */
 
-/* Limit marker styling */
 .limit-marker {
     opacity: 0.8;
   }
   
   .limit-label {
     position: absolute;
-    top: -20px; /* Moved above the circle */
+    top: -20px; 
     font-size: 12px;
     color: #235055;
     font-weight: bold;
@@ -532,6 +517,5 @@ h2 {
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
-  
-  /* Progress bar transition */
+
   

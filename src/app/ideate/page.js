@@ -64,14 +64,14 @@ export default function Ideate() {
   const generateTable = () => {
     let tableHTML = "\n<table>\n";
     
-    // Add header row
+    
     tableHTML += "  <tr>\n";
     for (let j = 0; j < tableCols; j++) {
       tableHTML += `    <th>Header ${j + 1}</th>\n`;
     }
     tableHTML += "  </tr>\n";
     
-    // Add data rows
+  
     for (let i = 0; i < tableRows - 1; i++) {
       tableHTML += "  <tr>\n";
       for (let j = 0; j < tableCols; j++) {
@@ -87,18 +87,14 @@ export default function Ideate() {
   };
 
   const exportToPDF = () => {
-    // In a real implementation, you would use a library like jsPDF or html2pdf
-    // For now, we'll create a printable version that can be saved as PDF through the browser
-    
+
     let printContent = '';
     let title = 'Ideate Notes';
     
     if (isDrawingMode && canvasRef.current) {
-      // For drawing mode, export the canvas as an image
       title = 'Ideate Drawing';
       const dataUrl = canvasRef.current.toDataURL('image/png');
       
-      // Create a new window with the image
       const printWindow = window.open('', '_blank');
       printWindow.document.write(`
         <html>
@@ -149,11 +145,7 @@ export default function Ideate() {
       `);
       printWindow.document.close();
     } else {
-      // For text content
-      // Format the content with proper styling
       const styledContent = content.replace(/\n/g, '<br>');
-      
-      // Create a new window with the formatted content
       const printWindow = window.open('', '_blank');
       printWindow.document.write(`
         <html>
@@ -243,8 +235,6 @@ export default function Ideate() {
     ctx.strokeStyle = '#235055';
     ctx.lineWidth = 2;
     ctx.lineCap = 'round';
-    
-    // Adjust canvas size
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
   };
@@ -253,8 +243,6 @@ export default function Ideate() {
     if (!canvasRef.current) return;
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
-    
-    // Get mouse position relative to canvas
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -270,8 +258,6 @@ export default function Ideate() {
     if (!drawing || !canvasRef.current) return;
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
-    
-    // Get current mouse position
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;

@@ -347,6 +347,7 @@ export default function Wallet() {
                         onClick={(e) => handleCalendarClick(index, e)}
                       />
                       <span className="formatted-date">{formatDate(expense.date)}</span>
+
                       {showCalendar === index && (
                         <CustomCalendar 
                           index={index} 

@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Horizon",
-  icons: "/logo.png",
+  icons: "https://i.ibb.co/LXkB5kJK/logo.png",
 };
 
 export default function RootLayout({ children }) {

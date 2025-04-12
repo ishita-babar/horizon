@@ -8,7 +8,7 @@ const Navbar = () => {
         <li><Link href="/taskflow">Taskflow</Link></li>
         <li><Link href="/ideate">Ideate</Link></li>
         <li className="logo">
-          <img src="/logo.png" alt="Logo" className="navbar-logo" />
+          <img src="https://i.ibb.co/LXkB5kJK/logo.png" alt="Logo" className="navbar-logo" />
         </li>
         <li><Link href="/wallet">Wallet</Link></li>
         <li><Link href="/streaks">Streaks</Link></li>

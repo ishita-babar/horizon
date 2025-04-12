@@ -36,7 +36,7 @@ const Sidebar = () => {
           <Link href="/">
             <div className="logo-wrapper">
               <Image 
-                src="/logo.png" 
+                src="https://i.ibb.co/LXkB5kJK/logo.png" 
                 alt="App Logo" 
                 width={120} 
                 height={120}
